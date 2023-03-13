@@ -3,10 +3,11 @@ import pandas as pd
 from vega_datasets import data
 import altair as alt
 
+alt.data_transformers.disable_max_rows()
+
+# Page Set Up 
 st.title("SI 649 Altair Assignment 4")
 st.write("Haley Johnson")
-
-alt.data_transformers.disable_max_rows()
 
 # Create tabs on visualization 
 tab1, tab2, tab3, tab4 = st.tabs(['Question 1', 'Question 2', 'Question 3', 'Question 4'])
@@ -104,7 +105,7 @@ lines = alt.Chart(continent_hurricanes).mark_line(
 ch3 = alt.layer(
     us, lines
 ).properties(
-    #width = 800, 
+    width = 800, 
     height = 400, 
     title = 'Hurricane Trajectories in the Continental US, 2017'
 ).configure_title(
@@ -147,7 +148,6 @@ states_bar = alt.Chart(state_pop).add_selection(hover_select).mark_bar(
 ch4 = alt.hconcat(states_view, states_bar)
 
 # Add Visualizations to Page
-
 with tab1: 
     st.altair_chart(ch1)
 with tab2: 
